@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">android50</string>
+    <string name="user_albums">Albums</string>
+
+    <string name="create_album">Create Album</string>
+    <string name="delete_album">Delete Album</string>
+    <string name="rename_album">Rename Album</string>
+    <string name="search_photos">Search</string>
+
+    <string name="album_name">Album Name</string>
+    <string name="num_photos">Number of Photos</string>
+    <string name="delete_album_btn">Delete</string>
+    <string name="rename_album_btn">Rename</string>
+
+
+
 </resources>

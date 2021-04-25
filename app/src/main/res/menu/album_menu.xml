@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:appcompat="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/create_album"
+        android:title="@string/rename_album"
+        android:icon="@drawable/ic_action_plus"
+        appcompat:showAsAction="always" />
+    <item
+        android:id="@+id/search_photos"
+        android:icon="@drawable/ic_action_search"
+        android:title="@string/search_photos"
+        appcompat:showAsAction="always" />
+</menu>
