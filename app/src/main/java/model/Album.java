@@ -1,5 +1,7 @@
 package model;
 
+import com.example.android50.UserAlbums;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
@@ -26,6 +28,10 @@ public class Album implements Serializable {
      * The name of the album.
      */
     private String albumName;
+    /**
+     * List of all albums in the application, used for serialization.
+     */
+    private ArrayList<Album> albums = UserAlbums.getAlbums();
 
     /**
      * Constructor to create a new album.
@@ -92,7 +98,7 @@ public class Album implements Serializable {
      */
     public void addPhoto(Photo photo) throws IOException {
         photos.add(photo);
-        //Photos.save(allUsers);
+        DataManager.save(albums);
     }
 
     /**
@@ -103,7 +109,7 @@ public class Album implements Serializable {
      */
     public void removePhoto(Photo photo) throws IOException {
         photos.remove(photo);
-        //Photos.save(allUsers);
+        DataManager.save(albums);
     }
 
     /**
@@ -114,11 +120,9 @@ public class Album implements Serializable {
      */
     public boolean duplicatePicture(File img) {
         for (Photo photo : photos) {
-          /*  if (img.equals(photo.getPath())) {
+            if (img.equals(photo.getPath())) {
                 return true;
             }
-
-           */
         }
         return false;
     }
