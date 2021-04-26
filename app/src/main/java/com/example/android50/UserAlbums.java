@@ -16,17 +16,20 @@ import java.util.ArrayList;
 import model.Album;
 
 public class UserAlbums extends AppCompatActivity {
+    public static final int EDIT_ALBUM_CODE=1;
+    public static final int CREATE_ALBUM_CODE=2;
+    private ArrayList<Album> albums;
+    private RecyclerView rvAlbums;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_albums);
 
-
         // Populate list for testing
-         RecyclerView rvAlbums = (RecyclerView) findViewById(R.id.rvAlbums);
+         rvAlbums = (RecyclerView) findViewById(R.id.rvAlbums);
 
-         ArrayList<Album> albums = new ArrayList<>();
+         albums = new ArrayList<>();
          albums.add(new Album("album 1"));
          albums.add(new Album("album 2"));
          // Create adapter passing in the sample user data
@@ -50,7 +53,8 @@ public class UserAlbums extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.create_album:
                 //TODO: finish method
-                createEditAlbum();
+                createAlbum();
+               // createEditAlbum();
                 return true;
             case R.id.search_photos:
                 searchPhotos();
@@ -60,14 +64,55 @@ public class UserAlbums extends AppCompatActivity {
         }
     }
 
+    //creates album
+    private void createAlbum(){
+        Intent intent = new Intent(this, AddEditAlbum.class);
+        startActivityForResult(intent, CREATE_ALBUM_CODE);
+    }
+
+    protected void onActivityResult(int requestCode,
+                                    int resultCode,
+                                    Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (resultCode != RESULT_OK) {
+            return;
+        }
+
+        Bundle bundle = intent.getExtras();
+        if (bundle == null) {
+            return;
+        }
+
+        // gather all info passed back by launched activity
+        String name = bundle.getString(AddEditAlbum.ALBUM_NAME);
+        int index = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
+
+        if (requestCode == EDIT_ALBUM_CODE) {
+            //todo: serialize
+            Album album = albums.get(index);
+            album.setAlbumName(name);
+        } else {
+            //todo: serialize
+            albums.add(new Album(name));
+        }
+
+        // Reflect changes on adapter
+        rvAlbums.getAdapter().notifyDataSetChanged();
+
+    }
+
     private void searchPhotos() {
         Intent intent = new Intent(this, Search.class);
         startActivity(intent);
     }
 
+    /*
     private void createEditAlbum(){
         Intent intent = new Intent(this, CreateEditAlbum.class);
         startActivity(intent);
     }
+
+     */
+
 
 }
