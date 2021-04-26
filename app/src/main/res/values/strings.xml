@@ -19,5 +19,7 @@
     <string name="or">OR</string>
     <string name="search">Search by One or Two Tags</string>
 
-
+    <string name="albumLbl">Album</string>
+    <string name="saveLbl">Save</string>
+    <string name="cancelLbl">Cancel</string>
 </resources>

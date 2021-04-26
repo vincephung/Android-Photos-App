@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Android50">
-        <activity android:name=".CreateEditAlbum"></activity>
+        <activity android:name=".InsideAlbum"></activity>
+        <activity android:name=".CreateEditAlbum" />
         <activity android:name=".Search" />
         <activity android:name=".UserAlbums">
             <intent-filter>
