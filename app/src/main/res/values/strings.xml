@@ -2,6 +2,7 @@
     <string name="app_name">android50</string>
     <string name="user_albums">Albums</string>
 
+    <!--Strings for home screen-->
     <string name="create_album">Create Album</string>
     <string name="delete_album">Delete Album</string>
     <string name="rename_album">Rename Album</string>
@@ -11,6 +12,22 @@
     <string name="num_photos">Number of Photos</string>
     <string name="delete_album_btn">Delete</string>
     <string name="rename_album_btn">Rename</string>
+
+    <!-- Strings used for add edit album -->
+    <string name="save_label">Save</string>
+    <string name="cancel_label">Cancel</string>
+
+
+
+    <string name="title_activity_add_edit_album">AddEditAlbum</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
 
 
