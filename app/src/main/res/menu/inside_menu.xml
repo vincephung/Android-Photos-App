@@ -11,9 +11,5 @@
         android:title="@string/slideshow"
         android:icon="@drawable/ic_action_slideshow"
         appcompat:showAsAction="always" />
-    <item
-        android:id="@+id/backAlbums"
-        android:icon="@drawable/ic_action_back"
-        android:title="@string/back"
-        appcompat:showAsAction="always" />
+
 </menu>

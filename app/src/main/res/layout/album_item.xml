@@ -17,15 +17,17 @@
 
     <Button
         android:id="@+id/rename_album_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/rename_album_btn" />
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/ic_action_edit"
+        android:scaleType="fitCenter"/>
 
     <Button
             android:id="@+id/delete_album_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/delete_album_btn" />
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/ic_action_delete"
+            android:scaleType="fitCenter"/>
 
 
 </LinearLayout>

@@ -37,6 +37,7 @@ public class AddEditAlbum extends AppCompatActivity {
             albumName.setText(bundle.getString(ALBUM_NAME));
         }
     }
+
     public void cancel(View view) {
         setResult(RESULT_CANCELED);
         finish();

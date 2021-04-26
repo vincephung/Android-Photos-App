@@ -77,8 +77,15 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder>{
                     int position = getAdapterPosition(); // gets item position
                     if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                         Album curAlbum = albumList.get(position);
-                        //This line is just testing to see if click works, replace it with open album later
-                        Toast.makeText(context, curAlbum.getAlbumName(), Toast.LENGTH_SHORT).show();
+
+                        Bundle bundle = new Bundle();
+                        bundle.putInt(AddEditAlbum.ALBUM_INDEX,position);
+                        bundle.putString(AddEditAlbum.ALBUM_NAME,curAlbum.getAlbumName());
+                        Intent intent = new Intent(itemView.getContext(),InsideAlbum.class);
+                        intent.putExtras(bundle);
+
+                        Activity origin = (Activity)context;
+                        origin.startActivity(intent);
                     }
                 }
             });

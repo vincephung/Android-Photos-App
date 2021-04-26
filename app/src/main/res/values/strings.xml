@@ -17,9 +17,13 @@
     <string name="save_label">Save</string>
     <string name="cancel_label">Cancel</string>
 
+    <!-- Strings for insideAlbum -->
+    <string name="photo_label">Photo</string>
 
-
+    <!--Activity titles -->
     <string name="title_activity_add_edit_album">AddEditAlbum</string>
+    <string name="title_activity_inside_album">Inside Album</string>
+
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
