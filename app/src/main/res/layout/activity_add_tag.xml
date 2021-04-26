@@ -14,18 +14,14 @@
         android:padding="20dp">
 
         <!--  Name label -->
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="2dp"
-            android:text="@string/albumLbl" />
+            android:text="@string/tagLbl" />
 
         <!-- Name field -->
-        <EditText
-            android:id="@+id/tag_value"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:drawable/editbox_background" />
 
         <!--  Year label -->
 
@@ -36,6 +32,26 @@
         <!-- Director field -->
 
         <!--  Buttons for save and cancel -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:orientation="horizontal">
+
+            <ToggleButton
+                android:id="@+id/typeBtn"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:textOff="@string/location_toggle"
+                android:textOn="@string/person_toggle" />
+
+            <EditText
+                android:id="@+id/tag_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/editbox_background" />
+
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginEnd="15dp"
-                android:text="@string/saveLbl"
+                android:text="@string/addTag"
                 android:textSize="16sp"
                 app:backgroundTint="#FFFFFF" />
 
