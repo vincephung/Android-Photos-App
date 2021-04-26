@@ -7,18 +7,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import model.Album;
+import model.DataManager;
 
 public class UserAlbums extends AppCompatActivity {
     public static final int EDIT_ALBUM_CODE=1;
     public static final int CREATE_ALBUM_CODE=2;
-    private ArrayList<Album> albums;
+    private static ArrayList<Album> albums;
     private RecyclerView rvAlbums;
 
     @Override
@@ -26,18 +29,22 @@ public class UserAlbums extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_albums);
 
+        try {
+            albums = DataManager.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         // Populate list for testing
          rvAlbums = (RecyclerView) findViewById(R.id.rvAlbums);
+        AlbumAdapter adapter = new AlbumAdapter(albums);
+        // Attach the adapter to the recyclerview to populate items
+        rvAlbums.setAdapter(adapter);
+        // Set layout manager to position the items
+        rvAlbums.setLayoutManager(new LinearLayoutManager(this));
 
-         albums = new ArrayList<>();
-         albums.add(new Album("album 1"));
-         albums.add(new Album("album 2"));
-         // Create adapter passing in the sample user data
-         AlbumAdapter adapter = new AlbumAdapter(albums);
-         // Attach the adapter to the recyclerview to populate items
-         rvAlbums.setAdapter(adapter);
-         // Set layout manager to position the items
-         rvAlbums.setLayoutManager(new LinearLayoutManager(this));
     }
 
     //creates menu in main screen
@@ -90,10 +97,24 @@ public class UserAlbums extends AppCompatActivity {
         if (requestCode == EDIT_ALBUM_CODE) {
             //todo: serialize
             Album album = albums.get(index);
-            album.setAlbumName(name);
+            //album.setAlbumName(name);
+            try {
+                DataManager.editAlbum(album,name);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         } else {
             //todo: serialize
-            albums.add(new Album(name));
+            try {
+                DataManager.addAlbum(new Album(name));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            //albums.add(new Album(name));
         }
 
         // Reflect changes on adapter
@@ -104,6 +125,10 @@ public class UserAlbums extends AppCompatActivity {
     private void searchPhotos() {
         Intent intent = new Intent(this, Search.class);
         startActivity(intent);
+    }
+
+    public static ArrayList<Album> getAlbums(){
+        return albums;
     }
 
     /*

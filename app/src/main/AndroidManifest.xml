@@ -8,21 +8,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-<<<<<<< HEAD
         android:theme="@style/Theme.Android50" >
         <activity
             android:name=".AddEditAlbum"
             android:label="@string/title_activity_add_edit_album"
             android:theme="@style/Theme.Android50.NoActionBar" >
         </activity>
-        <activity android:name=".UserAlbums" >
-=======
         android:theme="@style/Theme.Android50">
         <activity android:name=".InsideAlbum"></activity>
-        <activity android:name=".CreateEditAlbum" />
         <activity android:name=".Search" />
         <activity android:name=".UserAlbums">
->>>>>>> f3b51264e1933bf5a7675f722c353456ce90985d
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

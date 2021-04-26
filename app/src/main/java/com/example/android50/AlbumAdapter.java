@@ -14,9 +14,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import model.Album;
+import model.DataManager;
 
 //handles the list of albums for home screen
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder>{
@@ -90,7 +92,14 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder>{
                         Album curAlbum = albumList.get(position);
 
                         //Todo: serialiation and finalize this method
-                        albumList.remove(curAlbum);
+                        //albumList.remove(curAlbum);
+                        try {
+                            DataManager.deleteAlbum(curAlbum);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
                         //AlbumAdapter.this.notifyDataSetChanged();
                         notifyDataSetChanged();
                     }
