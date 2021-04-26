@@ -9,10 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Android50">
-        <activity
-            android:name=".UserAlbums">
+        <activity android:name=".CreateEditAlbum"></activity>
+        <activity android:name=".Search" />
+        <activity android:name=".UserAlbums">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

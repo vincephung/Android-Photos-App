@@ -12,6 +12,12 @@
     <string name="delete_album_btn">Delete</string>
     <string name="rename_album_btn">Rename</string>
 
+    <string name="location_toggle">Location</string>
+    <string name="person_toggle">Person</string>
+    <string name="value">Value</string>
+    <string name="and">AND</string>
+    <string name="or">OR</string>
+    <string name="search">Search by One or Two Tags</string>
 
 
 </resources>

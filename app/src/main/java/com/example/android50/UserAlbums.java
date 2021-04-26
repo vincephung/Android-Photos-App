@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -49,15 +50,24 @@ public class UserAlbums extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.create_album:
                 //TODO: finish method
-               // createAlbum();
+                createEditAlbum();
                 return true;
             case R.id.search_photos:
-                //TODO: finish method
-               // searchPhotos();
+                searchPhotos();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void searchPhotos() {
+        Intent intent = new Intent(this, Search.class);
+        startActivity(intent);
+    }
+
+    private void createEditAlbum(){
+        Intent intent = new Intent(this, CreateEditAlbum.class);
+        startActivity(intent);
     }
 
 }
