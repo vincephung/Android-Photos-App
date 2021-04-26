@@ -30,5 +30,14 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
 
+    <string name="location_toggle">Location</string>
+    <string name="person_toggle">Person</string>
+    <string name="value">Value</string>
+    <string name="and">AND</string>
+    <string name="or">OR</string>
+    <string name="search">Search by One or Two Tags</string>
 
+    <string name="albumLbl">Album</string>
+    <string name="saveLbl">Save</string>
+    <string name="cancelLbl">Cancel</string>
 </resources>

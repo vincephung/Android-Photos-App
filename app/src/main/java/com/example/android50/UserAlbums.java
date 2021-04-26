@@ -54,10 +54,10 @@ public class UserAlbums extends AppCompatActivity {
             case R.id.create_album:
                 //TODO: finish method
                 createAlbum();
+               // createEditAlbum();
                 return true;
             case R.id.search_photos:
-                //TODO: finish method
-               // searchPhotos();
+                searchPhotos();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -100,4 +100,19 @@ public class UserAlbums extends AppCompatActivity {
         rvAlbums.getAdapter().notifyDataSetChanged();
 
     }
+
+    private void searchPhotos() {
+        Intent intent = new Intent(this, Search.class);
+        startActivity(intent);
+    }
+
+    /*
+    private void createEditAlbum(){
+        Intent intent = new Intent(this, CreateEditAlbum.class);
+        startActivity(intent);
+    }
+
+     */
+
+
 }
