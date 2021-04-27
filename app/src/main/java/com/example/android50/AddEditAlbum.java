@@ -54,6 +54,14 @@ public class AddEditAlbum extends AppCompatActivity {
             newFragment.show(getSupportFragmentManager(), "badfields");
             return;
         }
+        if(UserAlbums.dupAlbum(name)){
+            Bundle bundle = new Bundle();
+            bundle.putString(AlbumDialogFragment.MESSAGE_KEY,"Album Name Already Exists");
+            DialogFragment newFragment = new AlbumDialogFragment();
+            newFragment.setArguments(bundle);
+            newFragment.show(getSupportFragmentManager(), "badfields");
+            return;
+        }
 
         // make Bundle
         Bundle bundle = new Bundle();
