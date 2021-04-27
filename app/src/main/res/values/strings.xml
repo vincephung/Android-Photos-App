@@ -49,6 +49,7 @@
     <string name="tagLbl">Enter Tag</string>
 
     <string name="searchLbl">Search By One or Two Tags</string>
+    <string name="clearLbl">Clear</string>
 
     <string name="addPhoto">Add Photo</string>
     <string name="slideshow">Begin Slideshow</string>

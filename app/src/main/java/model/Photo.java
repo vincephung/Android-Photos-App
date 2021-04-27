@@ -106,6 +106,15 @@ public class Photo implements Serializable {
         return false;
     }
 
+    public boolean match(Tag target){
+        for(Tag t : tags){
+            if(target.getName().equals(t.getName()) && t.getValue().toLowerCase().startsWith(target.getValue().toLowerCase())){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof Photo)) {

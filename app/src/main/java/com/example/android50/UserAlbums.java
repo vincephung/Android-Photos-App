@@ -17,6 +17,8 @@ import java.util.ArrayList;
 
 import model.Album;
 import model.DataManager;
+import model.Photo;
+import model.Tag;
 
 public class UserAlbums extends AppCompatActivity {
     public static final int EDIT_ALBUM_CODE=1;
@@ -136,6 +138,42 @@ public class UserAlbums extends AppCompatActivity {
             if(a.getAlbumName().equals(name)) return true;
         }
         return false;
+    }
+
+    public static ArrayList<Photo> searchByTag(Tag target){
+        ArrayList<Photo> result = new ArrayList<Photo>();
+        for(Album a : albums){
+            for(Photo p : a.getPhotos()){
+                if(p.match(target)){
+                    result.add(p);
+                }
+            }
+        }
+        return result;
+    }
+
+    public static ArrayList<Photo> orSearchByTags(Tag t1, Tag t2){
+        ArrayList<Photo> result = new ArrayList<Photo>();
+        for(Album a : albums){
+            for(Photo p : a.getPhotos()){
+                if(p.match(t1) || p.match(t2)){
+                    result.add(p);
+                }
+            }
+        }
+        return result;
+    }
+
+    public static ArrayList<Photo> andSearchByTags(Tag t1, Tag t2){
+        ArrayList<Photo> result = new ArrayList<Photo>();
+        for(Album a : albums){
+            for(Photo p : a.getPhotos()){
+                if(p.match(t1) && p.match(t2)){
+                    result.add(p);
+                }
+            }
+        }
+        return result;
     }
 
     /*
