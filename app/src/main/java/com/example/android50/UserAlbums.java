@@ -108,7 +108,7 @@ public class UserAlbums extends AppCompatActivity {
                 e.printStackTrace();
             }
         } else {
-            //todo: serialize
+
             try {
                 DataManager.addAlbum(new Album(name));
             } catch (IOException e) {

@@ -2,6 +2,8 @@ package com.example.android50;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -56,7 +58,12 @@ public class InsideAlbum extends AppCompatActivity {
         // Attach the adapter to the recyclerview to populate items
         rvPhotos.setAdapter(adapter);
         // Set layout manager to position the items
-        rvPhotos.setLayoutManager(new LinearLayoutManager(this));
+       // rvPhotos.setLayoutManager(new LinearLayoutManager(this));
+
+        rvPhotos.setHasFixedSize(true);
+        GridLayoutManager layoutManager = new GridLayoutManager(this,2);
+        rvPhotos.addItemDecoration(new GridSpacing(5));
+        rvPhotos.setLayoutManager(layoutManager);
     }
 
     //creates menu for inside album
@@ -77,7 +84,8 @@ public class InsideAlbum extends AppCompatActivity {
                 return true;
             case R.id.slideshow:
                 //TODO: finish method
-                //startSlideshow()
+                Intent intent = new Intent(this, Slideshow.class);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -86,7 +94,8 @@ public class InsideAlbum extends AppCompatActivity {
 
     //gets photo from file system
     private void addPhoto(){
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        //Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.setType("image/*");
         if (intent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(intent, REQUEST_IMAGE_GET);
@@ -99,7 +108,7 @@ public class InsideAlbum extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_GET && resultCode == RESULT_OK) {
             Uri fullPhotoUri = intent.getData();
             String photoURI = fullPhotoUri.toString();
-            ;
+
             // Create new photo and add to album
             try {
                 curAlbum.addPhoto(new Photo(photoURI));
