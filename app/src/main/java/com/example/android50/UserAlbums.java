@@ -131,6 +131,13 @@ public class UserAlbums extends AppCompatActivity {
         return albums;
     }
 
+    public static boolean dupAlbum(String name){
+        for(Album a: albums){
+            if(a.getAlbumName().equals(name)) return true;
+        }
+        return false;
+    }
+
     /*
     private void createEditAlbum(){
         Intent intent = new Intent(this, CreateEditAlbum.class);

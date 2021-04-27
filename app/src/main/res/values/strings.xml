@@ -21,7 +21,7 @@
     <string name="photo_label">Photo</string>
 
     <!--Activity titles -->
-    <string name="title_activity_add_edit_album">AddEditAlbum</string>
+    <string name="title_activity_add_edit_album">Add or Edit Album</string>
     <string name="title_activity_inside_album">Inside Album</string>
 
     <!-- Strings used for fragments for navigation -->
