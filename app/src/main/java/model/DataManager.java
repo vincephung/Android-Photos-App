@@ -102,4 +102,5 @@ public class DataManager implements Serializable {
         album.setAlbumName(name);
         save(albums);
     }
+
 }

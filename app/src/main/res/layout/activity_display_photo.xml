@@ -12,11 +12,11 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/display_imageview"
             android:layout_width="267dp"
             android:layout_height="720dp"
             android:layout_weight="1"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:contentDescription="@string/photo_label" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvTags"
