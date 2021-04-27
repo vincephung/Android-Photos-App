@@ -23,6 +23,8 @@
     <!--Activity titles -->
     <string name="title_activity_add_edit_album">Add or Edit Album</string>
     <string name="title_activity_inside_album">Inside Album</string>
+    <string name="title_activity_display_photo">Display Photo</string>
+
 
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -47,6 +49,11 @@
     <string name="addTag">Add Tag</string>
     <string name="back">Back</string>
     <string name="tagLbl">Enter Tag</string>
+    <string name="moveBtn">Move Photo</string>
+    <string name="chooseAlbumAlert">Please choose album to move to:</string>
+    <string name="confirmAlbumMove">Ok</string>
+    <string name="cancelAlbumMove">Cancel</string>
+
 
     <string name="searchLbl">Search By One or Two Tags</string>
     <string name="clearLbl">Clear</string>

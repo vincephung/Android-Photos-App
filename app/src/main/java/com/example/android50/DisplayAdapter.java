@@ -43,14 +43,8 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Tag tag = tagList.get(position);
-
         TextView textView = holder.tagTextView;
         textView.setText(tag.toString());
-        /*Button delBtn = holder.deleteButton; //might need to change to del_album_button
-        Button renameBtn = holder.renameButton;
-        btn set text
-        btn set enabled
-        */
     }
 
     //return number of items in album list
@@ -79,9 +73,6 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
                     int position = getAdapterPosition(); // gets item position
                     if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                         Tag curTag = tagList.get(position);
-
-                        //Todo: serialiation and finalize this method
-
 
                         try {
                             crntPhoto.removeTag(curTag);

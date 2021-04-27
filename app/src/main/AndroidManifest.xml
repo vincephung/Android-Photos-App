@@ -29,7 +29,11 @@
         </activity>
         <activity android:name=".AddTag"></activity>
         <activity android:name=".Slideshow" />
-        <activity android:name=".DisplayPhoto" />
+        <activity android:name=".DisplayPhoto"
+            android:parentActivityName=".InsideAlbum"
+            android:label="@string/title_activity_display_photo"
+            android:theme="@style/Theme.Android50.NoActionBar"
+            />
         <activity android:name=".Search" />
         <activity android:name=".UserAlbums">
             <intent-filter>

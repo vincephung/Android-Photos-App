@@ -83,7 +83,8 @@ public class InsideAlbumAdapter extends RecyclerView.Adapter<InsideAlbumAdapter.
 
                         Bundle bundle = new Bundle();
                         bundle.putInt(InsideAlbum.PHOTO_INDEX,position);
-                        bundle.putString(InsideAlbum.PHOTO_PATH,curPhoto.getPath().toString());
+                        bundle.putString(InsideAlbum.PHOTO_PATH,curPhoto.getPath());
+                        bundle.putString(AddEditAlbum.ALBUM_NAME,curAlbum.getAlbumName());
                         Intent intent = new Intent(itemView.getContext(),DisplayPhoto.class);
                         intent.putExtras(bundle);
 

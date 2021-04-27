@@ -6,9 +6,10 @@
         android:title="@string/addTag"
         android:icon="@drawable/ic_action_plus"
         appcompat:showAsAction="always" />
+
     <item
-        android:id="@+id/backInsideAlbum"
-        android:icon="@drawable/ic_action_back"
-        android:title="@string/back"
+        android:id="@+id/move_photo"
+        android:title="@string/moveBtn"
+        android:icon="@drawable/ic_action_transfer"
         appcompat:showAsAction="always" />
 </menu>
