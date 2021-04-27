@@ -33,6 +33,7 @@ public class InsideAlbumAdapter extends RecyclerView.Adapter<InsideAlbumAdapter.
     public InsideAlbumAdapter(ArrayList<Photo> photoList, Album curAlbum){
         this.photoList = photoList;
         this.curAlbum = curAlbum;
+
     }
 
     @Override
@@ -53,10 +54,10 @@ public class InsideAlbumAdapter extends RecyclerView.Adapter<InsideAlbumAdapter.
 
         //File imgFile = photo.getPath();
 
-        //Uri imageURI = Uri.parse(photo.getPath());
-        //Log.d("test","did this run " + imageURI);
+        Uri imageURI = Uri.parse(photo.getPath());
+        Log.d("test","did this run " + imageURI);
 
-        //imageView.setImageURI(imageURI);
+        imageView.setImageURI(imageURI);
 /*
         if(imgFile.exists()){
             Log.d("test","testing" );
