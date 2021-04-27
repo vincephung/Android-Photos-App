@@ -45,31 +45,14 @@ public class InsideAlbumAdapter extends RecyclerView.Adapter<InsideAlbumAdapter.
         return viewHolder;
     }
 
+    // Sets all of the imageviews to the correct image
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Photo photo = photoList.get(position);
         ImageView imageView = holder.photo_imageView;
-
-        //set image
-
-        //File imgFile = photo.getPath();
-
         Uri imageURI = Uri.parse(photo.getPath());
         Log.d("test","did this run " + imageURI);
-
         imageView.setImageURI(imageURI);
-/*
-        if(imgFile.exists()){
-            Log.d("test","testing" );
-            Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-            Bitmap bitmap2 = Bitmap.createScaledBitmap(myBitmap,40,40,false);
-            imageView.setImageBitmap(bitmap2);
-
-            Log.d("test","img is "+imageView.toString());
-        }
-
- */
-
     }
 
 

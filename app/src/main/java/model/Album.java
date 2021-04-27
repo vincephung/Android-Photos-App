@@ -115,12 +115,12 @@ public class Album implements Serializable {
     /**
      * Checks if the picture already exists in this album.
      *
-     * @param img Image file to check.
+     * @param path Image file path to check.
      * @return False if the picture does not already exist, true otherwise.
      */
-    public boolean duplicatePicture(File img) {
+    public boolean duplicatePicture(String path) {
         for (Photo photo : photos) {
-            if (img.equals(photo.getPath())) {
+            if (path.equals(photo.getPath())) {
                 return true;
             }
         }

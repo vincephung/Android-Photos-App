@@ -40,14 +40,8 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Album album = albumList.get(position);
-
         TextView textView = holder.albumNameTextView;
         textView.setText(album.getAlbumName());
-        /*Button delBtn = holder.deleteButton; //might need to change to del_album_button
-        Button renameBtn = holder.renameButton;
-        btn set text
-        btn set enabled
-        */
     }
 
     //return number of items in album list
@@ -97,9 +91,6 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder>{
                     int position = getAdapterPosition(); // gets item position
                     if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
                         Album curAlbum = albumList.get(position);
-
-                        //Todo: serialiation and finalize this method
-                        //albumList.remove(curAlbum);
                         try {
                             DataManager.deleteAlbum(curAlbum);
                         } catch (IOException e) {
@@ -107,7 +98,6 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder>{
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
                         }
-                        //AlbumAdapter.this.notifyDataSetChanged();
                         notifyDataSetChanged();
                     }
                 }

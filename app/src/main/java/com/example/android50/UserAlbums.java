@@ -61,9 +61,7 @@ public class UserAlbums extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.create_album:
-                //TODO: finish method
                 createAlbum();
-               // createEditAlbum();
                 return true;
             case R.id.search_photos:
                 searchPhotos();
@@ -97,9 +95,7 @@ public class UserAlbums extends AppCompatActivity {
         int index = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
 
         if (requestCode == EDIT_ALBUM_CODE) {
-            //todo: serialize
             Album album = albums.get(index);
-            //album.setAlbumName(name);
             try {
                 DataManager.editAlbum(album,name);
             } catch (IOException e) {

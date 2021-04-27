@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -57,9 +58,6 @@ public class InsideAlbum extends AppCompatActivity {
         InsideAlbumAdapter adapter = new InsideAlbumAdapter(photos,curAlbum);
         // Attach the adapter to the recyclerview to populate items
         rvPhotos.setAdapter(adapter);
-        // Set layout manager to position the items
-       // rvPhotos.setLayoutManager(new LinearLayoutManager(this));
-
         rvPhotos.setHasFixedSize(true);
         GridLayoutManager layoutManager = new GridLayoutManager(this,2);
         rvPhotos.addItemDecoration(new GridSpacing(5));
@@ -108,6 +106,11 @@ public class InsideAlbum extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_GET && resultCode == RESULT_OK) {
             Uri fullPhotoUri = intent.getData();
             String photoURI = fullPhotoUri.toString();
+
+            if(curAlbum.duplicatePicture(photoURI)){
+                Toast.makeText(getApplicationContext(),"Duplicate photo", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             // Create new photo and add to album
             try {
