@@ -28,7 +28,7 @@ public class Photo implements Serializable {
     /**
      * The image file of the photo.
      */
-    private File path;
+    private String path;
 
     /**
      * List of all albums in the application, used for serialization.
@@ -40,7 +40,7 @@ public class Photo implements Serializable {
      *
      * @param path Image file of the photo.
      */
-    public Photo(File path) {
+    public Photo(String path) {
         this.path = path;
         this.tags = new ArrayList<Tag>();
     }
@@ -50,7 +50,7 @@ public class Photo implements Serializable {
      *
      * @return The image file of the photo.
      */
-    public File getPath() {
+    public String getPath() {
         return this.path;
     }
 
@@ -111,7 +111,7 @@ public class Photo implements Serializable {
         if (!(o instanceof Photo)) {
             return false;
         }
-        return ((Photo) o).getPath() == path;
+        return ((Photo) o).getPath().equals(path);
     }
 
 

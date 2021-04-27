@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,20 +24,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import model.Album;
-import model.DataManager;
 import model.Photo;
 
 public class InsideAlbumAdapter extends RecyclerView.Adapter<InsideAlbumAdapter.ViewHolder> {
     private ArrayList<Photo> photoList;
     private Album curAlbum;
 
-    public InsideAlbumAdapter(ArrayList<Photo> photoList){
+    public InsideAlbumAdapter(ArrayList<Photo> photoList, Album curAlbum){
         this.photoList = photoList;
+        this.curAlbum = curAlbum;
     }
 
-    @NonNull
     @Override
-    public InsideAlbumAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public InsideAlbumAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View contactView = inflater.inflate(R.layout.photo_item, parent, false);
@@ -47,18 +48,33 @@ public class InsideAlbumAdapter extends RecyclerView.Adapter<InsideAlbumAdapter.
     public void onBindViewHolder(ViewHolder holder, int position) {
         Photo photo = photoList.get(position);
         ImageView imageView = holder.photo_imageView;
+
         //set image
-        File imgFile = photo.getPath();
+
+        //File imgFile = photo.getPath();
+
+        //Uri imageURI = Uri.parse(photo.getPath());
+        //Log.d("test","did this run " + imageURI);
+
+        //imageView.setImageURI(imageURI);
+/*
         if(imgFile.exists()){
+            Log.d("test","testing" );
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-            imageView.setImageBitmap(myBitmap);
+            Bitmap bitmap2 = Bitmap.createScaledBitmap(myBitmap,40,40,false);
+            imageView.setImageBitmap(bitmap2);
+
+            Log.d("test","img is "+imageView.toString());
         }
+
+ */
+
     }
 
 
     @Override
     public int getItemCount() {
-        return 0;
+        return photoList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

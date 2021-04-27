@@ -5,10 +5,16 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import model.Album;
@@ -22,6 +28,7 @@ public class InsideAlbum extends AppCompatActivity {
 
     public static final String PHOTO_PATH = "photoPath";
     public static final String PHOTO_INDEX = "photoIndex";
+    public static final int REQUEST_IMAGE_GET = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +52,7 @@ public class InsideAlbum extends AppCompatActivity {
 
         //initialize recyclerview list
         rvPhotos = (RecyclerView) findViewById(R.id.rvPhotos);
-        InsideAlbumAdapter adapter = new InsideAlbumAdapter(photos);
+        InsideAlbumAdapter adapter = new InsideAlbumAdapter(photos,curAlbum);
         // Attach the adapter to the recyclerview to populate items
         rvPhotos.setAdapter(adapter);
         // Set layout manager to position the items
@@ -65,7 +72,8 @@ public class InsideAlbum extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.addPhoto:
                 //TODO: finish method
-                //curAlbum.addPhoto(new Photo);
+                addPhoto();
+
                 return true;
             case R.id.slideshow:
                 //TODO: finish method
@@ -78,6 +86,28 @@ public class InsideAlbum extends AppCompatActivity {
 
     //gets photo from file system
     private void addPhoto(){
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent, REQUEST_IMAGE_GET);
+        }
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == REQUEST_IMAGE_GET && resultCode == RESULT_OK) {
+            Uri fullPhotoUri = intent.getData();
+            String photoURI = fullPhotoUri.toString();
+            ;
+            // Create new photo and add to album
+            try {
+                curAlbum.addPhoto(new Photo(photoURI));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            // Reflect changes on adapter
+            rvPhotos.getAdapter().notifyDataSetChanged();
+        }
     }
 }

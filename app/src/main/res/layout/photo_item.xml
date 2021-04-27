@@ -10,12 +10,12 @@
 
     <ImageView
         android:id="@+id/photo_imageView"
-        android:layout_width="164dp"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="57dp"
         android:layout_weight="1"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/photo_label"
-        android:scaleType="fitStart"
-         />
+        android:scaleType="fitXY" />
 
     <Button
         android:id="@+id/delete_photo_button"
