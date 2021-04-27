@@ -22,13 +22,12 @@ import model.Tag;
 
 //handles the list of albums for home screen
 public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHolder> {
-    private ArrayList<Tag> tagList;
+    private ArrayList<Tag> tagList ;
     private Album crntAlbum;
     private Photo crntPhoto;
 
-    public DisplayAdapter(ArrayList<Tag> tagList, Album crntAlbum, Photo crntPhoto) {
-        this.tagList = tagList;
-        this.crntAlbum = crntAlbum;
+    public DisplayAdapter(Photo crntPhoto) {
+        this.tagList = crntPhoto.getTags();
         this.crntPhoto = crntPhoto;
     }
 
@@ -82,17 +81,15 @@ public class DisplayAdapter extends RecyclerView.Adapter<DisplayAdapter.ViewHold
                         Tag curTag = tagList.get(position);
 
                         //Todo: serialiation and finalize this method
-                        /*
-                        //albumList.remove(curAlbum);
+
+
                         try {
-                            DataManager.delete(curAlbum);
+                            crntPhoto.removeTag(curTag);
                         } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (ClassNotFoundException e) {
                             e.printStackTrace();
                         }
                         //AlbumAdapter.this.notifyDataSetChanged();
-                        notifyDataSetChanged();*/
+                        notifyDataSetChanged();
                     }
                 }
             });
