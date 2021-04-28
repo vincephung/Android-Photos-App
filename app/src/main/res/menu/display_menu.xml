@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:appcompat="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/create_tag"
+        android:id="@+id/tag_add"
         android:title="@string/addTag"
         android:icon="@drawable/ic_action_plus"
         appcompat:showAsAction="always" />

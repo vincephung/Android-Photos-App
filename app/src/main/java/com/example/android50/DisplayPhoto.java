@@ -23,6 +23,9 @@ import model.Photo;
 import model.Tag;
 
 public class DisplayPhoto extends AppCompatActivity {
+    private static final String ALBUM_NAME = "albumName";
+    private static final String ALBUM_INDEX = "albumIndex";
+    private static final String PHOTO_INDEX = "photoIndex";
 
     private RecyclerView rvTags;
     private ImageView img;
@@ -88,11 +91,18 @@ public class DisplayPhoto extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.tag_add:
+                Bundle bundleAdd = new Bundle();
+                bundleAdd.putInt(ALBUM_INDEX, albumIndex);
+                bundleAdd.putInt(PHOTO_INDEX, photoIndex);
+                bundleAdd.putString(ALBUM_NAME, albumName);
+                Intent intent = new Intent(this, AddTag.class);
+                intent.putExtras(bundleAdd);
+                startActivity(intent);
                 return true;
             case R.id.move_photo:
-                Bundle bundle = new Bundle();
+                Bundle bundleMove = new Bundle();
                 DialogFragment newFragment = new DisplayPhotoDialogFragment();
-                newFragment.setArguments(bundle);
+                newFragment.setArguments(bundleMove);
                 newFragment.show(getSupportFragmentManager(),"DisplayPhotoDialogFragment");
                 return true;
             case android.R.id.home:
@@ -101,6 +111,19 @@ public class DisplayPhoto extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode,
+                                    int resultCode,
+                                    Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if(resultCode != RESULT_OK){
+            return;
+        }
+        else{
+            rvTags.getAdapter().notifyDataSetChanged();
         }
     }
 
