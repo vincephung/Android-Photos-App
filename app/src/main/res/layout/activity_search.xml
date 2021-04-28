@@ -86,6 +86,7 @@
             android:id="@+id/searchBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="search"
             android:text="@string/search_photos" />
 
         <Button
