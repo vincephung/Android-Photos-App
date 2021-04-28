@@ -80,7 +80,7 @@ public class AddTag extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        DisplayPhoto.getRvTags().getAdapter().notifyDataSetChanged(); //update rv tag list
 
         // send back to caller
         setResult(RESULT_OK);

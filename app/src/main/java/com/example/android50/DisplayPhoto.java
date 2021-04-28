@@ -27,7 +27,7 @@ public class DisplayPhoto extends AppCompatActivity {
     private static final String ALBUM_INDEX = "albumIndex";
     private static final String PHOTO_INDEX = "photoIndex";
 
-    private RecyclerView rvTags;
+    private static RecyclerView rvTags;
     private ImageView img;
     private Album crntAlbum;
     private Photo crntPhoto;
@@ -127,6 +127,10 @@ public class DisplayPhoto extends AppCompatActivity {
         else{
             rvTags.getAdapter().notifyDataSetChanged();
         }
+    }
+
+    public static RecyclerView getRvTags(){
+        return rvTags;
     }
 
 }

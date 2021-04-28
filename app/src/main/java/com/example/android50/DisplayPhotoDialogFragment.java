@@ -49,7 +49,6 @@ public class DisplayPhotoDialogFragment  extends DialogFragment {
 
                         try {
                             destAlbum.addPhoto(curPhoto);
-                            getActivity().onBackPressed(); // go back to album page
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -59,6 +58,7 @@ public class DisplayPhotoDialogFragment  extends DialogFragment {
                             e.printStackTrace();
                         }
                         InsideAlbum.getRvPhotos().getAdapter().notifyDataSetChanged();
+                        getActivity().onBackPressed(); // go back to album page
                     }
                 }).setNegativeButton(R.string.cancelAlbumMove, (dialog, id) -> {
                        return;
