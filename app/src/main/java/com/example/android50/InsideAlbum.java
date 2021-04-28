@@ -27,7 +27,7 @@ public class InsideAlbum extends AppCompatActivity {
     private static ArrayList<Album> albums = UserAlbums.getAlbums();
     private Album curAlbum;
     private static ArrayList<Photo> photos;
-    private RecyclerView rvPhotos;
+    private static RecyclerView rvPhotos;
     private int albumIndex;
 
     public static final String PHOTO_PATH = "photoPath";
@@ -119,5 +119,9 @@ public class InsideAlbum extends AppCompatActivity {
             // Reflect changes on adapter
             rvPhotos.getAdapter().notifyDataSetChanged();
         }
+    }
+
+    public static RecyclerView getRvPhotos(){
+        return rvPhotos;
     }
 }
