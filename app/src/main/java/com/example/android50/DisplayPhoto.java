@@ -5,7 +5,9 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +29,9 @@ public class DisplayPhoto extends AppCompatActivity {
     private Album crntAlbum;
     private Photo crntPhoto;
     private ArrayList<Tag> tagsList;
+    private int albumIndex;
+    private int photoIndex;
+    private String albumName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +45,11 @@ public class DisplayPhoto extends AppCompatActivity {
 
         //Get information from bundle and set toolbar name
         Bundle bundle = getIntent().getExtras();
-        Log.d("test","rbefore");
 
         if(bundle!=null){
-            Log.d("test","reached here");
-            String albumName = bundle.getString(AddEditAlbum.ALBUM_NAME);
-            int albumIndex = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
-            int photoIndex = bundle.getInt(InsideAlbum.PHOTO_INDEX);
+            albumName = bundle.getString(AddEditAlbum.ALBUM_NAME);
+            albumIndex = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
+            photoIndex = bundle.getInt(InsideAlbum.PHOTO_INDEX);
             crntAlbum = UserAlbums.getAlbums().get(albumIndex);
             crntPhoto = crntAlbum.getPhotos().get(photoIndex);
             tagsList = crntPhoto.getTags();
@@ -85,14 +88,16 @@ public class DisplayPhoto extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.tag_add:
-                //TODO: finish method
-
                 return true;
             case R.id.move_photo:
                 Bundle bundle = new Bundle();
                 DialogFragment newFragment = new DisplayPhotoDialogFragment();
                 newFragment.setArguments(bundle);
-                newFragment.getDialog().show();
+                newFragment.show(getSupportFragmentManager(),"DisplayPhotoDialogFragment");
+                return true;
+            case android.R.id.home:
+                //return to inside album, and does not reset data
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

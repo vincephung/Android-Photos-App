@@ -28,6 +28,7 @@ public class InsideAlbum extends AppCompatActivity {
     private Album curAlbum;
     private static ArrayList<Photo> photos;
     private RecyclerView rvPhotos;
+    private int albumIndex;
 
     public static final String PHOTO_PATH = "photoPath";
     public static final String PHOTO_INDEX = "photoIndex";
@@ -47,7 +48,7 @@ public class InsideAlbum extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null){
             String albumName = bundle.getString(AddEditAlbum.ALBUM_NAME);
-            int albumIndex = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
+            albumIndex = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
             curAlbum = albums.get(albumIndex);
             photos = curAlbum.getPhotos();
             setTitle(albumName);
@@ -55,7 +56,7 @@ public class InsideAlbum extends AppCompatActivity {
 
         //initialize recyclerview list
         rvPhotos = (RecyclerView) findViewById(R.id.rvPhotos);
-        InsideAlbumAdapter adapter = new InsideAlbumAdapter(photos,curAlbum);
+        InsideAlbumAdapter adapter = new InsideAlbumAdapter(photos,curAlbum,albumIndex);
         // Attach the adapter to the recyclerview to populate items
         rvPhotos.setAdapter(adapter);
         rvPhotos.setHasFixedSize(true);
@@ -76,14 +77,10 @@ public class InsideAlbum extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.addPhoto:
-                //TODO: finish method
                 addPhoto();
-
                 return true;
-            case R.id.slideshow:
-                //TODO: finish method
-                Intent intent = new Intent(this, Slideshow.class);
-                startActivity(intent);
+            case android.R.id.home:
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

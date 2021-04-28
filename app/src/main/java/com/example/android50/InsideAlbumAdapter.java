@@ -29,11 +29,12 @@ import model.Photo;
 public class InsideAlbumAdapter extends RecyclerView.Adapter<InsideAlbumAdapter.ViewHolder> {
     private ArrayList<Photo> photoList;
     private Album curAlbum;
+    private int albumIndex;
 
-    public InsideAlbumAdapter(ArrayList<Photo> photoList, Album curAlbum){
+    public InsideAlbumAdapter(ArrayList<Photo> photoList, Album curAlbum, int albumIndex){
         this.photoList = photoList;
         this.curAlbum = curAlbum;
-
+        this.albumIndex = albumIndex;
     }
 
     @Override
@@ -83,6 +84,7 @@ public class InsideAlbumAdapter extends RecyclerView.Adapter<InsideAlbumAdapter.
 
                         Bundle bundle = new Bundle();
                         bundle.putInt(InsideAlbum.PHOTO_INDEX,position);
+                        bundle.putInt(AddEditAlbum.ALBUM_INDEX,position);
                         bundle.putString(InsideAlbum.PHOTO_PATH,curPhoto.getPath());
                         bundle.putString(AddEditAlbum.ALBUM_NAME,curAlbum.getAlbumName());
                         Intent intent = new Intent(itemView.getContext(),DisplayPhoto.class);
