@@ -32,6 +32,7 @@ public class InsideAlbum extends AppCompatActivity {
 
     public static final String PHOTO_PATH = "photoPath";
     public static final String PHOTO_INDEX = "photoIndex";
+    public static final String ALBUM_INDEX = "albumIndex";
     public static final int REQUEST_IMAGE_GET = 1;
 
     @Override

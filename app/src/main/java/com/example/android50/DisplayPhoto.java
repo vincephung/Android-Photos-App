@@ -51,7 +51,7 @@ public class DisplayPhoto extends AppCompatActivity {
 
         if(bundle!=null){
             albumName = bundle.getString(AddEditAlbum.ALBUM_NAME);
-            albumIndex = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
+            albumIndex = bundle.getInt(InsideAlbum.ALBUM_INDEX);
             photoIndex = bundle.getInt(InsideAlbum.PHOTO_INDEX);
             crntAlbum = UserAlbums.getAlbums().get(albumIndex);
             crntPhoto = crntAlbum.getPhotos().get(photoIndex);
