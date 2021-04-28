@@ -2,10 +2,12 @@ package com.example.android50;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,8 +49,10 @@ public class Search extends AppCompatActivity {
 
         SearchAdapter adapter = new SearchAdapter(results);
         resultsRV.setAdapter(adapter);
-        resultsRV.setLayoutManager(new LinearLayoutManager(this));
 
+        GridLayoutManager layoutManager = new GridLayoutManager(this,2);
+        resultsRV.addItemDecoration(new GridSpacing(5));
+        resultsRV.setLayoutManager(layoutManager);
     }
 
     //creates menu in main screen
@@ -86,8 +90,9 @@ public class Search extends AppCompatActivity {
         RadioButton selectedButton;
 
         if(tag1V != null && tag1V.length() > 0 && selectedID == -1 && (tag2V == null || tag2V.length()==0)){
+            Log.d("test","did this run ");
             Tag temp = new Tag(tag1T, tag1V);
-            results = UserAlbums.searchByTag(temp);
+            UserAlbums.searchByTag(temp, results);
             resultsRV.getAdapter().notifyDataSetChanged();
             return;
         }
@@ -96,16 +101,18 @@ public class Search extends AppCompatActivity {
             if(selectedButton.getText().toString().equals("OR")){
                 Tag t1 = new Tag(tag1T, tag1V);
                 Tag t2 = new Tag(tag2T, tag2V);
-                UserAlbums.orSearchByTags(t1, t2);
+                UserAlbums.orSearchByTags(t1, t2, results);
+                resultsRV.getAdapter().notifyDataSetChanged();
             }
             else{
                 Tag t1 = new Tag(tag1T, tag1V);
                 Tag t2 = new Tag(tag2T, tag2V);
-                UserAlbums.andSearchByTags(t1, t2);
+                UserAlbums.andSearchByTags(t1, t2, results);
+                resultsRV.getAdapter().notifyDataSetChanged();
             }
         }
         //error check first
-        if((tag1Value.getText().toString() == null || tag1Value.getText().toString().length() == 0)){
+        else if((tag1Value.getText().toString() == null || tag1Value.getText().toString().length() == 0)){
             Bundle bundle = new Bundle();
             bundle.putString(AlbumDialogFragment.MESSAGE_KEY,"Input for First Tag is Required");
             DialogFragment newFragment = new AlbumDialogFragment();
@@ -113,9 +120,9 @@ public class Search extends AppCompatActivity {
             newFragment.show(getSupportFragmentManager(), "badfields");
             return;
         }
-        if(tag1Value.getText().toString() == null || tag1Value.getText().toString().length() == 0){
+        else{
             Bundle bundle = new Bundle();
-            bundle.putString(AlbumDialogFragment.MESSAGE_KEY,"Input for First Tag is Required");
+            bundle.putString(AlbumDialogFragment.MESSAGE_KEY,"Invalid input");
             DialogFragment newFragment = new AlbumDialogFragment();
             newFragment.setArguments(bundle);
             newFragment.show(getSupportFragmentManager(), "badfields");

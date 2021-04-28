@@ -1,6 +1,8 @@
 package com.example.android50;
 
 import android.content.Context;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +35,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public void onBindViewHolder(SearchAdapter.ViewHolder holder, int position) {
         Photo photo = photoList.get(position);
         ImageView imageView = holder.search_imageview;
+        Uri imageURI = Uri.parse(photo.getPath());
+        imageView.setImageURI(imageURI);
         /*Button delBtn = holder.deleteButton; //might need to change to del_album_button
         Button renameBtn = holder.renameButton;
         btn set text

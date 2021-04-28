@@ -136,20 +136,18 @@ public class UserAlbums extends AppCompatActivity {
         return false;
     }
 
-    public static ArrayList<Photo> searchByTag(Tag target){
-        ArrayList<Photo> result = new ArrayList<Photo>();
+    public static void searchByTag(Tag target, ArrayList<Photo> result){
         for(Album a : albums){
             for(Photo p : a.getPhotos()){
                 if(p.match(target)){
+                    Log.d("test","did this run " );
                     result.add(p);
                 }
             }
         }
-        return result;
     }
 
-    public static ArrayList<Photo> orSearchByTags(Tag t1, Tag t2){
-        ArrayList<Photo> result = new ArrayList<Photo>();
+    public static void orSearchByTags(Tag t1, Tag t2, ArrayList<Photo> result){
         for(Album a : albums){
             for(Photo p : a.getPhotos()){
                 if(p.match(t1) || p.match(t2)){
@@ -157,11 +155,9 @@ public class UserAlbums extends AppCompatActivity {
                 }
             }
         }
-        return result;
     }
 
-    public static ArrayList<Photo> andSearchByTags(Tag t1, Tag t2){
-        ArrayList<Photo> result = new ArrayList<Photo>();
+    public static void andSearchByTags(Tag t1, Tag t2, ArrayList<Photo> result){
         for(Album a : albums){
             for(Photo p : a.getPhotos()){
                 if(p.match(t1) && p.match(t2)){
@@ -169,7 +165,6 @@ public class UserAlbums extends AppCompatActivity {
                 }
             }
         }
-        return result;
     }
 
     /*
