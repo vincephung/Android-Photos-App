@@ -5,6 +5,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -47,10 +48,8 @@ public class DisplayPhoto extends AppCompatActivity {
 
         //Get information from bundle and set toolbar name
         Bundle bundle = getIntent().getExtras();
-        Log.d("test","rbefore");
 
         if(bundle!=null){
-            Log.d("test","reached here");
             albumName = bundle.getString(AddEditAlbum.ALBUM_NAME);
             albumIndex = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
             photoIndex = bundle.getInt(InsideAlbum.PHOTO_INDEX);
@@ -104,7 +103,11 @@ public class DisplayPhoto extends AppCompatActivity {
                 Bundle bundleMove = new Bundle();
                 DialogFragment newFragment = new DisplayPhotoDialogFragment();
                 newFragment.setArguments(bundleMove);
-                newFragment.getDialog().show();
+                newFragment.show(getSupportFragmentManager(),"DisplayPhotoDialogFragment");
+                return true;
+            case android.R.id.home:
+                //return to inside album, and does not reset data
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

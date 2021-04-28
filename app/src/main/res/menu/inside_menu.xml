@@ -6,10 +6,5 @@
         android:title="@string/addPhoto"
         android:icon="@drawable/ic_action_plus"
         appcompat:showAsAction="always" />
-    <item
-        android:id="@+id/slideshow"
-        android:title="@string/slideshow"
-        android:icon="@drawable/ic_action_slideshow"
-        appcompat:showAsAction="always" />
 
 </menu>
