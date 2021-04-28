@@ -16,9 +16,11 @@ import model.Photo;
 
 public class DisplayPhotoDialogFragment  extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        if(getDialog() == null){
+      /*  if(getDialog() == null){
             setShowsDialog(false);
         }
+
+       */
 
         Bundle bundle = getArguments();
         ArrayList<Album> albums = UserAlbums.getAlbums();
