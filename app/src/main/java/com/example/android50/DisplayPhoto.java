@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,12 +22,18 @@ import model.Photo;
 import model.Tag;
 
 public class DisplayPhoto extends AppCompatActivity {
+    private static final String ALBUM_NAME = "albumName";
+    private static final String ALBUM_INDEX = "albumIndex";
+    private static final String PHOTO_INDEX = "photoIndex";
 
     private RecyclerView rvTags;
     private ImageView img;
     private Album crntAlbum;
     private Photo crntPhoto;
     private ArrayList<Tag> tagsList;
+    private int albumIndex;
+    private int photoIndex;
+    private String albumName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +51,9 @@ public class DisplayPhoto extends AppCompatActivity {
 
         if(bundle!=null){
             Log.d("test","reached here");
-            String albumName = bundle.getString(AddEditAlbum.ALBUM_NAME);
-            int albumIndex = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
-            int photoIndex = bundle.getInt(InsideAlbum.PHOTO_INDEX);
+            albumName = bundle.getString(AddEditAlbum.ALBUM_NAME);
+            albumIndex = bundle.getInt(AddEditAlbum.ALBUM_INDEX);
+            photoIndex = bundle.getInt(InsideAlbum.PHOTO_INDEX);
             crntAlbum = UserAlbums.getAlbums().get(albumIndex);
             crntPhoto = crntAlbum.getPhotos().get(photoIndex);
             tagsList = crntPhoto.getTags();
@@ -85,17 +92,35 @@ public class DisplayPhoto extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.tag_add:
-                //TODO: finish method
-
+                Bundle bundleAdd = new Bundle();
+                bundleAdd.putInt(ALBUM_INDEX, albumIndex);
+                bundleAdd.putInt(PHOTO_INDEX, photoIndex);
+                bundleAdd.putString(ALBUM_NAME, albumName);
+                Intent intent = new Intent(this, AddTag.class);
+                intent.putExtras(bundleAdd);
+                startActivity(intent);
                 return true;
             case R.id.move_photo:
-                Bundle bundle = new Bundle();
+                Bundle bundleMove = new Bundle();
                 DialogFragment newFragment = new DisplayPhotoDialogFragment();
-                newFragment.setArguments(bundle);
+                newFragment.setArguments(bundleMove);
                 newFragment.getDialog().show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode,
+                                    int resultCode,
+                                    Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if(resultCode != RESULT_OK){
+            return;
+        }
+        else{
+            rvTags.getAdapter().notifyDataSetChanged();
         }
     }
 
