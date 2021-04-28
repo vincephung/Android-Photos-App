@@ -101,6 +101,8 @@ public class DisplayPhoto extends AppCompatActivity {
                 return true;
             case R.id.move_photo:
                 Bundle bundleMove = new Bundle();
+                bundleMove.putInt(ALBUM_INDEX, albumIndex);
+                bundleMove.putInt(PHOTO_INDEX, photoIndex);
                 DialogFragment newFragment = new DisplayPhotoDialogFragment();
                 newFragment.setArguments(bundleMove);
                 newFragment.show(getSupportFragmentManager(),"DisplayPhotoDialogFragment");
