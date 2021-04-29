@@ -29,6 +29,7 @@ public class DisplayPhoto extends AppCompatActivity {
     private static final String PHOTO_INDEX = "photoIndex";
 
     private static RecyclerView rvTags;
+    DisplayAdapter adapter;
     private ImageView img;
     private Album crntAlbum;
     private Photo crntPhoto;
@@ -64,7 +65,7 @@ public class DisplayPhoto extends AppCompatActivity {
         rvTags = (RecyclerView) findViewById(R.id.rvTags);
 
        // DisplayAdapter adapter = new DisplayAdapter(tagsList, crntAlbum, crntPhoto);
-        DisplayAdapter adapter = new DisplayAdapter(crntPhoto);
+        adapter = new DisplayAdapter(crntPhoto);
 
         // Attach the adapter to the recyclerview to populate items
         rvTags.setAdapter(adapter);
@@ -138,9 +139,13 @@ public class DisplayPhoto extends AppCompatActivity {
         crntPhoto = UserAlbums.getAlbums().get(albumIndex).getPhotos().get(photoIndex);
         Uri imageURI = Uri.parse(crntPhoto.getPath());
         img.setImageURI(imageURI);
-        tagsList.clear();
-        tagsList.addAll(crntPhoto.getTags());
-        rvTags.getAdapter().notifyDataSetChanged();
+
+
+        //tagsList.clear();
+        //tagsList.addAll(crntPhoto.getTags());
+        //rvTags.getAdapter().notifyDataSetChanged();
+        adapter = new DisplayAdapter(crntPhoto);
+        rvTags.setAdapter(adapter);
         return;
 
     }
@@ -153,9 +158,11 @@ public class DisplayPhoto extends AppCompatActivity {
         crntPhoto = UserAlbums.getAlbums().get(albumIndex).getPhotos().get(photoIndex);
         Uri imageURI = Uri.parse(crntPhoto.getPath());
         img.setImageURI(imageURI);
-        tagsList.clear();
-        tagsList.addAll(crntPhoto.getTags());
-        rvTags.getAdapter().notifyDataSetChanged();
+       // tagsList.clear();
+        //tagsList.addAll(crntPhoto.getTags());
+      //  rvTags.getAdapter().notifyDataSetChanged();
+        adapter = new DisplayAdapter(crntPhoto);
+        rvTags.setAdapter(adapter);
         return;
 
     }
