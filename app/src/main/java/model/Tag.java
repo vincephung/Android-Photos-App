@@ -59,6 +59,6 @@ public class Tag implements Serializable {
         if (!(o instanceof Tag)) {
             return false;
         }
-        return ((Tag) o).getValue().equals(value) && ((Tag) o).getName().equals(name);
+        return ((Tag) o).getValue().toLowerCase().equals(value.toLowerCase()) && ((Tag) o).getName().toLowerCase().equals(name.toLowerCase());
     }
 }

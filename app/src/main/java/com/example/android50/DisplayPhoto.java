@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.widget.Toolbar;
 
@@ -127,6 +128,36 @@ public class DisplayPhoto extends AppCompatActivity {
         else{
             rvTags.getAdapter().notifyDataSetChanged();
         }
+    }
+
+    public void next(View view){
+        photoIndex++;
+        if(photoIndex == UserAlbums.getAlbums().get(albumIndex).getNumPhotos()){
+            photoIndex = 0;
+        }
+        crntPhoto = UserAlbums.getAlbums().get(albumIndex).getPhotos().get(photoIndex);
+        Uri imageURI = Uri.parse(crntPhoto.getPath());
+        img.setImageURI(imageURI);
+        tagsList.clear();
+        tagsList.addAll(crntPhoto.getTags());
+        rvTags.getAdapter().notifyDataSetChanged();
+        return;
+
+    }
+
+    public void prev(View view){
+        photoIndex--;
+        if(photoIndex < 0){
+            photoIndex = UserAlbums.getAlbums().get(albumIndex).getNumPhotos()-1;
+        }
+        crntPhoto = UserAlbums.getAlbums().get(albumIndex).getPhotos().get(photoIndex);
+        Uri imageURI = Uri.parse(crntPhoto.getPath());
+        img.setImageURI(imageURI);
+        tagsList.clear();
+        tagsList.addAll(crntPhoto.getTags());
+        rvTags.getAdapter().notifyDataSetChanged();
+        return;
+
     }
 
     public static RecyclerView getRvTags(){

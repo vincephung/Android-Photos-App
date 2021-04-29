@@ -131,7 +131,7 @@ public class UserAlbums extends AppCompatActivity {
 
     public static boolean dupAlbum(String name){
         for(Album a: albums){
-            if(a.getAlbumName().equals(name)) return true;
+            if(a.getAlbumName().toLowerCase().equals(name.toLowerCase())) return true;
         }
         return false;
     }
