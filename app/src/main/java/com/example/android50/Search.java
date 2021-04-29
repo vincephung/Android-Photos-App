@@ -82,6 +82,10 @@ public class Search extends AppCompatActivity {
 
     //handle searching
     public void search(View view){
+        //clear before new search
+        results.clear();
+        resultsRV.getAdapter().notifyDataSetChanged();
+
         String tag1V = tag1Value.getText().toString();
         String tag2V = tag2Value.getText().toString();
         String tag1T = tag1Type.getText().toString();

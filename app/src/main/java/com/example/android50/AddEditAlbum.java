@@ -24,9 +24,6 @@ public class AddEditAlbum extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // activates the up arrow
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         // get the fields
         albumName = findViewById(R.id.edit_album_name);
 

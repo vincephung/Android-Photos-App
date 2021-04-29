@@ -28,7 +28,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddTag"></activity>
-        <activity android:name=".Slideshow" />
         <activity android:name=".DisplayPhoto"
             android:parentActivityName=".InsideAlbum"
             android:label="@string/title_activity_display_photo"
